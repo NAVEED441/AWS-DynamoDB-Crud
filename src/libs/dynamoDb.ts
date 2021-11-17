@@ -125,3 +125,16 @@ export const getData = async (param) => {
 //     ":ac": p_data.actor,
 //   },
 // };
+
+export const deleteData = async (param) => {
+  try {
+    const delet = {
+      TableName: "Library-Table",
+      Key: param,
+    };
+    const result = await dynamoDb.delete(delet).promise();
+    return result + "Data is deleted";
+  } catch (err) {
+    console.log(err);
+  }
+};

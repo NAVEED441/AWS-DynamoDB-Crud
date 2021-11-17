@@ -1,24 +1,24 @@
 import type { ValidatedEventAPIGatewayProxyEvent } from "@libs/apiGateway";
 import { formatJSONResponse } from "@libs/apiGateway";
-import { getData } from "@libs/dynamoDb";
+import { deleteData } from "@libs/dynamoDb";
 import { middyfy } from "@libs/lambda";
 
 import schema from "./schema";
 
-const getBook: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
+const deleteBook: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   event
 ) => {
-  const { availibility, price } = event.body;
+  const { authorName, bookName } = event.body;
 
   const param = {
-    availibility,
-    price,
+    authorName,
+    bookName,
   };
-  const res = await getData(param);
+  const res = await deleteData(param);
   return formatJSONResponse({
-    message: `Hello ${res.statusCode}, welcome to the exciting Serverless world!`,
+    message: `Hello ${res}, welcome to the exciting Serverless world!`,
     res,
   });
 };
 
-export const main = middyfy(getBook);
+export const main = middyfy(deleteBook);

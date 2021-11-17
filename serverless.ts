@@ -2,6 +2,7 @@ import type { AWS } from "@serverless/typescript";
 
 import hello from "@functions/addBook";
 import orderBook from "@functions/getBook";
+import deleteBook from "@functions/deleteBook";
 
 const serverlessConfiguration: AWS = {
   service: "aws-composit-key",
@@ -101,7 +102,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { hello, orderBook },
+  functions: { hello, orderBook, deleteBook },
 };
 
 module.exports = serverlessConfiguration;

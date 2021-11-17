@@ -1,3 +1,4 @@
-export { default as hello } from "./addBook";
-export { default as orderBook } from "./getBook";
-export { default as deleteBook } from "./deleteBook";
+export { default as hello } from "./create";
+export { default as orderBook } from "./delete";
+export { default as deleteBook } from "./read";
+export { default as updateBook } from "./update";

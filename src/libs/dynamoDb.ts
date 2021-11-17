@@ -138,3 +138,24 @@ export const deleteData = async (param) => {
     console.log(err);
   }
 };
+export const updateData = async (param) => {
+  try {
+    const data = {
+      TableName: "Library-Table",
+      Key: {
+        authorName: param.authorName,
+        bookName: param.bookName,
+      },
+      UpdateExpression: "set price=:P, availibilty=:A , quantity=:Q",
+      ExpressionAttributeValues: {
+        ":P": param.price,
+        ":A": param.availibilty,
+        ":Q": param.quantity,
+      },
+    };
+    const result = await dynamoDb.update(data).promise();
+    return result + "update successfully";
+  } catch (err) {
+    return err;
+  }
+};
